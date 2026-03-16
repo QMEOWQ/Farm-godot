@@ -130,3 +130,5 @@ godot --path "项目路径"  # 直接运行
 | GameDialogueManager     | 游戏内对话逻辑 |
 | GameManager             | 游戏流程控制   |
 | SceneManager            | 场景加载       |
+
+![alt text](display.png)
