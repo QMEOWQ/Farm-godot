@@ -1,0 +1,42 @@
+[gd_scene load_steps=10 format=3 uid="uid://bq22j2b4gxs3w"]
+
+[ext_resource type="Script" path="res://scenes/objects/plants/tomato.gd" id="1_lsuf5"]
+[ext_resource type="Texture2D" uid="uid://cu0qbojqi1png" path="res://assets/game/objects/basic_plants.png" id="1_vowrl"]
+[ext_resource type="PackedScene" uid="uid://b7t21isivjjox" path="res://scenes/objects/plants/watering_particles.tscn" id="2_a6alh"]
+[ext_resource type="PackedScene" uid="uid://lcafto77lohb" path="res://scenes/objects/plants/flowering_particles.tscn" id="3_ahu7g"]
+[ext_resource type="PackedScene" uid="uid://d0udrajjf3lx8" path="res://scenes/objects/plants/growth_cycle_component.tscn" id="4_iy6fj"]
+[ext_resource type="PackedScene" uid="uid://fe35f7hgkvas" path="res://scenes/components/hurt_component.tscn" id="5_0v8mf"]
+[ext_resource type="PackedScene" uid="uid://rhsng4i80p2s" path="res://scenes/components/save_data_component.tscn" id="7_nboeb"]
+[ext_resource type="Resource" uid="uid://c5xl0c5qddq6n" path="res://resources/scene_data_resource.tres" id="8_k24yq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2illg"]
+size = Vector2(15, 7)
+
+[node name="Tomato" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_lsuf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("1_vowrl")
+hframes = 6
+vframes = 2
+frame = 7
+
+[node name="WateringParticles" parent="." instance=ExtResource("2_a6alh")]
+
+[node name="FloweringParticles" parent="." instance=ExtResource("3_ahu7g")]
+
+[node name="GrowthCycleComponent" parent="." instance=ExtResource("4_iy6fj")]
+current_growth_state = 1
+days_until_harvest = 7
+
+[node name="HurtComponent" parent="." instance=ExtResource("5_0v8mf")]
+tool = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_2illg")
+
+[node name="SaveDataComponent" parent="." instance=ExtResource("7_nboeb")]
+save_data_resource = ExtResource("8_k24yq")
